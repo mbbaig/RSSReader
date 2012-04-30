@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, RssReaderActivity!</string>
+    <string name="app_name">RssReader</string>
+    <string name="no_rss_feed">No Feeds</string>
+    <string name="no_rss_articles">Loading RSS articles …</string>
+    <string name="title_label">Feed title:</string>
+    <string name="url_label">URL for feed:</string>
+    <string name="title_hint">Touch to type title</string>
+    <string name="url_hint">Touch to type URL</string>
+    <string name="add_label">Add</string>
+    <string name="cancel_label">Cancel</string>
+    <string name="update_label">Update</string>
+    <string name="edit">Edit item</string>
+    <string name="delete">Delete item</string>
+
+</resources>

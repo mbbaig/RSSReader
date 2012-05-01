@@ -36,11 +36,9 @@ public class Main extends ListActivity {
 			urls = adapter.getURLs();
 			adapter.close();
 			lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles));
-			//setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, feeds));
 			registerForContextMenu(lv);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			Dialog d = new Dialog(this);
 			d.setTitle("Error");
 			TextView tv = new TextView(this);
@@ -49,7 +47,33 @@ public class Main extends ListActivity {
 			d.show();
 		}
 	}
-	
+
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+		adapter.open();
+		ids = adapter.getIds();
+		titles = adapter.getTitles();
+		urls = adapter.getURLs();
+		adapter.close();
+		lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles));
+		lv.invalidateViews();
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		adapter.open();
+		ids = adapter.getIds();
+		titles = adapter.getTitles();
+		urls = adapter.getURLs();
+		adapter.close();
+		lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles));
+		lv.invalidateViews();
+	}
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
@@ -92,7 +116,6 @@ public class Main extends ListActivity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
-		//return super.onContextItemSelected(item);
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		switch (item.getItemId()) {
 			case R.id.edit_item:
@@ -105,7 +128,12 @@ public class Main extends ListActivity {
 			case R.id.delete_item:
 				adapter.open();
 				adapter.deleteFeed(ids[info.position]);
+				ids = adapter.getIds();
+				titles = adapter.getTitles();
+				urls = adapter.getURLs();
 				adapter.close();
+				lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles));
+				lv.invalidateViews();
 		    default:
 		        return super.onContextItemSelected(item);
 		}

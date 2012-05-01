@@ -43,7 +43,6 @@ public class AddFeed extends Activity implements OnClickListener {
 				feed.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 				Dialog d = new Dialog(this);
 				d.setTitle("Error");
 				TextView tv = new TextView(this);

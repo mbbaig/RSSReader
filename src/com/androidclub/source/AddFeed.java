@@ -37,10 +37,24 @@ public class AddFeed extends Activity implements OnClickListener {
 			try {
 				String title = feedTitle.getText().toString();
 				String url = feedURL.getText().toString();
-				DatabaseAdapter feed = new DatabaseAdapter(AddFeed.this);
-				feed.open();
-				feed.updateDatabase(title, url);
-				feed.close();
+				if (url.contains("http://") || url.contains("https://")){
+					DatabaseAdapter feed = new DatabaseAdapter(this);
+					feed.open();
+					feed.updateDatabase(title, url);
+					feed.close();
+					finish();
+				}
+				else{
+					Dialog d = new Dialog(this);
+					d.setTitle("Error");
+					TextView tv = new TextView(this);
+					tv.setText("Please provide a host protocol in the url\n" +
+							"For Example:\n" +
+							"-http://\n" +
+							"-https://");
+					d.setContentView(tv);
+					d.show();
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				Dialog d = new Dialog(this);
@@ -49,8 +63,6 @@ public class AddFeed extends Activity implements OnClickListener {
 				tv.setText(e.toString());
 				d.setContentView(tv);
 				d.show();
-			} finally {
-				finish();
 			}
 			break;
 		case R.id.btnCancel:

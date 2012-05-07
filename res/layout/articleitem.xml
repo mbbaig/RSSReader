@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#00000000" />
+        android:textColor="#00ffffff" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#00000000" />
+        android:textColor="#00ffffff" />
 
 </LinearLayout>

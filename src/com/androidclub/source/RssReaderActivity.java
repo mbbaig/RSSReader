@@ -2,7 +2,6 @@ package com.androidclub.source;
 
 import android.app.Dialog;
 import android.app.ListActivity;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -31,7 +30,6 @@ public class RssReaderActivity extends ListActivity {
         }
         
         try {
-			getListView().setBackgroundColor(Color.WHITE);
 			setListAdapter(Adapters.loadCursorAdapter(this, R.xml.rss_feed,
 			        "content://xmldocument/?url=" + Uri.encode(FEED_URI)));
 			getListView().setOnItemClickListener(new UrlIntentListener());
